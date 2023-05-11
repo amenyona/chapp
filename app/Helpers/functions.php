@@ -10,6 +10,7 @@ use App\Models\AutreDocument;
 use App\Models\CarnetDeBapteme;
 use App\Models\Annonce;
 use App\Models\Contact;
+use App\Models\Pays;
 use Carbon\Carbon;
 
 
@@ -88,14 +89,23 @@ function dateReturn($date)
 function renvoiEgliseInfo($iduser)
 {
     $egliseIdUser = User::where('id', '=', $iduser)->first();
-    $egliseInfo = DB::table('eglise_pays')
+    $egliseInfo = Eglise::where('id', $egliseIdUser['ideglise'])->firstOrFail();
+    $paysInfos = Pays::where('id', $egliseInfo->idpays)->firstOrFail();
+     $egliseInfos = DB::table('eglise_pays')
         ->join('eglises', 'eglise_pays.eglise_id', '=', 'eglises.id')
         ->join('pays', 'eglise_pays.pays_id', '=', 'pays.id')
         ->where('eglises.id', $egliseIdUser['ideglise'])
-        ->select('eglises.nom as eglisenom', 'eglises.quartier as eglisequartier', 'pays.nom as paysnom')
+        ->select('pays.*')
         ->first();
+//dd($egliseInfos->nom);
+    // return $egliseInfo->eglisenom . '/' . $egliseInfo->eglisequartier . '/' . $egliseInfo->paysnom;
+    return $egliseInfo->nom. '/' . $egliseInfo->quartier;
+} 
 
-    return $egliseInfo->eglisenom . '/' . $egliseInfo->eglisequartier . '/' . $egliseInfo->paysnom;
+function renvoiPaysInfo($idEglise){
+    $egliseInfo = Eglise::where('id', $idEglise)->firstOrFail();
+    $paysInfo = Pays::where('id', $egliseInfo->idpays)->firstOrFail();
+    return $paysInfo->nom;
 }
 
 
@@ -278,3 +288,5 @@ function verifIfAnnonceIsValid($idannoce)
         return false;
     }
 }
+
+

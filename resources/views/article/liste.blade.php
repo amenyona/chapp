@@ -138,7 +138,7 @@
                                                                 <ul class="list-inline">
                                                                     <li class="list-inline-item me-3">
                                                                       
-                                                                            <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i> {{implode(',',$item->user()->get()->pluck('name')->toArray())}}  {{implode(',',$item->user()->get()->pluck('firstname')->toArray())}} / {{renvoiEgliseInfo($item->iduser)}}
+                                                                            <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i> {{implode(',',$item->user()->get()->pluck('name')->toArray())}}  {{implode(',',$item->user()->get()->pluck('firstname')->toArray())}} / {{renvoiEgliseInfo($item->iduser)}} / {{renvoiPaysInfo($item->idEglise)}}
                                                                        
                                                                     </li>
                                                                     <li class="list-inline-item me-3">

@@ -50,7 +50,7 @@
                                 <td><?php echo couperMots($item->contenu,55); ?></td>
                                 <td>{{implode(',',$item->user()->get()->pluck('name')->toArray())}}</td>
                                 <td>
-                                    @if((renvoiRoleUser(Auth::user()->id) && renvoiIdEgliseForArticle($item->id))|| (renvoiRoleUserS(Auth::user()->id) && renvoiIdEgliseForArticle($item->id)))
+                                    @if((renvoiRoleUser(Auth::user()->id) && renvoiIdEgliseForArticle($item->id))|| (renvoiRoleUserS(Auth::user()->id) && renvoiIdEgliseForArticle($item->id)) ||(renvoiRoleUser(Auth::user()->id) && renvoiAdminEglise()))
                                     <a href="{{route('article.edit',$item->uuid)}}" class="btn btn-success waves-light waves-effect"><i class="mdi mdi-pencil"></i></a>
                                     @endif
                                     @if (renvoiRoleUser(Auth::user()->id) && renvoiAdminEglise())

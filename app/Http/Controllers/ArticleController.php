@@ -20,20 +20,25 @@ class ArticleController extends Controller
      */
     public function index()
     {
+        $articles = [];
         $tableau = [
             'liste' => 'La Liste des articles',
             'table' => 'Articles'
         ];
 
-        if (renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id) || renvoiRoleUserS(Auth::user()->id)) {
-            $loggedUserInfo = User::where('id', '=', Auth::user()->id)->first();
+        if (renvoiRoleUser(Auth::user()->id) && renvoiAdminEglise()) {           
+            $articles = Article::latest()->orderBy('titre', 'asc')->simplePaginate(25); 
+            //dd($articles); 
+          }else if (renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id) || renvoiRoleUserS(Auth::user()->id)) {            
             $articles = Article::latest()->where([
                 ['statut', '!=', 'suspendu'],
                 ['idEglise', renvoiEgliseId(Auth::user()->id)]
             ])->orderBy('titre', 'asc')->simplePaginate(25);
-            //dd($categories);
-            return view('article.index', compact('loggedUserInfo', 'articles', 'tableau'));
+            //dd($categories);       
         }
+        //dd($articles); 
+        $loggedUserInfo = User::where('id', '=', Auth::user()->id)->first();
+        return view('article.index', compact('loggedUserInfo', 'articles', 'tableau'));
     }
 
     /**
@@ -218,7 +223,11 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-
+        if (renvoiRoleUser(Auth::user()->id) && renvoiAdminEglise()) {
+            if ($request->eglise == "Veuillez Selectionner") {
+                return back()->with('errorchamps', 'Echec!!!Veuillez selectionner le champs eglise');
+            }
+        }
 
         if (renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id) || renvoiRoleUserS(Auth::user()->id)) {
 
@@ -246,6 +255,9 @@ class ArticleController extends Controller
 
             $article = Article::find($id);
             $article->iduser = Auth::user()->id;
+            if (renvoiRoleUser(Auth::user()->id) && renvoiAdminEglise()) {
+                $article->ideglise = $request->eglise;
+            }
             $article->titre = $request->titre;
             $article->contenu = $request->contenu;
             $article->image = $my_image;

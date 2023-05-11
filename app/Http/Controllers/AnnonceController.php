@@ -131,7 +131,8 @@ class AnnonceController extends Controller
             ];
             if(renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id) || renvoiRoleUserS(Auth::user()->id)){
                 $url = $_SERVER['REQUEST_URI'];
-                $id = substr($url,13);
+                $id = substr($url,16);
+                //dd($id);
                 $loggedUserInfo = User::where('id',Auth::user()->id)->first();
                 $annonce = Annonce::where('id',$id)->first();
                 return view('annonce.show',compact('annonce','loggedUserInfo','tableau'));
@@ -179,8 +180,8 @@ class AnnonceController extends Controller
     public function consultAnnonceExpiree(){
     
              $tableau = [
-            'titre1' => 'Annonces',
-            'titre2' => 'Consulter Annonces Exprées'
+            'liste' => 'Consulter Annonces Exprées',
+            'table' => 'Annonces'
             ];
         $loggedUserInfo = User::where('id',Auth::user()->id)->first();
         $pays = Pays::all();

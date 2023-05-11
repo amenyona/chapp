@@ -4,7 +4,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-               @if(renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id) || renvoiRoleUserS(Auth::user()->id))
+               @if((renvoiRoleUser(Auth::user()->id)) || (renvoiRoleUserP(Auth::user()->id)) || (renvoiRoleUserS(Auth::user()->id)) || (renvoiRoleUser(Auth::user()->id) && renvoiAdminEglise()))
                 <div class="mt-4">
                     <a href="{{route('annonce.create')}}" class="btn btn-primary waves-effect waves-light btn-sm">Cr&eacute;er annonce<i class="mdi mdi-arrow-right ms-1"></i></a>
                 </div>

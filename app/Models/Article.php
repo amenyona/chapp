@@ -10,7 +10,7 @@ use App\Models\Eglise;
 class Article extends Model
 {
     use HasFactory;
-    protected $fillable = ['iduser','idEglise','uuid','titre','contenu','image','statut'];
+    protected $fillable = ['iduser','idEglise','uuid','titre','contenu','image','statut','nom','quartier'];
 
      /**
      * Get the user that owns the Article

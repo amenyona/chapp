@@ -150,7 +150,7 @@
                                                                 <div class="col-sm-6">
                                                                     <div class="mt-4 mt-sm-0">
                                                                         <p class="text-muted mb-2">Posté par</p>
-                                                                        <h5 class="font-size-15">{{implode(',',$article->user()->get()->pluck('name')->toArray())}}  {{implode(',',$article->user()->get()->pluck('firstname')->toArray())}} / {{renvoiEgliseInfo($article->iduser)}}</h5>
+                                                                        <h5 class="font-size-15">{{implode(',',$article->user()->get()->pluck('name')->toArray())}}  {{implode(',',$article->user()->get()->pluck('firstname')->toArray())}} / {{renvoiEgliseInfo($article->iduser)}} / {{renvoiPaysInfo($article->idEglise)}}</h5>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -226,7 +226,7 @@
                                                                     <input type="hidden" name="idarticle" value="{{$article->id}}"/>
                 
                                                                     <div class="text-end">
-                                                                        <button type="submit" class="btn btn-success w-sm">Submit</button>
+                                                                        <button type="submit" class="btn btn-success w-sm">Envoyer Votre Commentaire</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
