@@ -158,7 +158,7 @@
 
                             </form>
                             <div class="mt-5 text-center">
-                                <p>Vous n'avez pas de compte ? <a href="#" class="fw-medium"> S'inscrire maintenant  </a> </p>
+                                <p>Vous n'avez pas de compte ? <a href="{{route('auth.inscrire')}}" class="fw-medium"> S'inscrire maintenant  </a> </p>
                             </div>
                         </div>
                     </div>   

@@ -77,10 +77,14 @@ class RepertoireController extends Controller
      */
     public function create()
     {
+        $tableau = [
+            'liste' => 'La Liste',
+            'table' => 'Articles'
+        ];
     
             if(renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id)|| renvoiRoleUserS(Auth::user()->id) ){
                 $loggedUserInfo = User::where('id','=',Auth::user()->id)->first();
-                return view('repertoire.create',compact('loggedUserInfo'));
+                return view('repertoire.create',compact('loggedUserInfo','tableau'));
             }
             
         

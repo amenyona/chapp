@@ -60,7 +60,7 @@ class UserAuthController extends Controller
         return $c;
     }
 
-    function inscrire()
+    public function inscrire()
     {
         $egliseInfos = DB::table('eglise_pays')
             ->join('eglises', 'eglise_pays.eglise_id', '=', 'eglises.id')

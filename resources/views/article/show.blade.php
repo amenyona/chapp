@@ -199,7 +199,7 @@
                                                             </div>
                 
                                                             <div class="mt-4">
-                                                                <h5 class="font-size-16 mb-3">Laisser un commentaire</h5>
+                                                                <h5 class="font-size-16 mb-3">Qu'est-ce-que cette exhortation vous dis? Faites nous savoir.</h5>
                 
                                                                 <form action="{{route('article.saveCommentaire')}}" method="POST">
                                                                      @csrf

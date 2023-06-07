@@ -11,7 +11,7 @@ use App\Models\Eglise;
 class Commentaire extends Model
 {
     use HasFactory;
-    protected $fillable = ['userId','idEglise','articleId','contenu','nom','prenom','email','statut'];
+    protected $fillable = ['userId','idEglise','articleId','contenu','statut'];
 
     /**
      * Get the Article that owns the Commentaire

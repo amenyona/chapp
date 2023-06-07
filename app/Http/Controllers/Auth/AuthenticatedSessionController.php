@@ -18,7 +18,7 @@ class AuthenticatedSessionController extends Controller
         ];
       
         if(renvoiRoleUser(Auth::user()->id)){
-                $users = User::where('id','<>',session('LoggedUser'))->latest()->simplePaginate(10);
+                $users = User::where('id','<>',Auth::user()->id)->latest()->simplePaginate(10);
                 return view('auth.listeutilisateurs',compact('users','tableau'));
         }
           
@@ -63,8 +63,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return view('auth.login');
+        //return view('auth.login');
 
-        //return redirect('/');
+        return redirect('/');
     }
 }

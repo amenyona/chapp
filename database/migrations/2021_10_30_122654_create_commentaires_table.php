@@ -18,10 +18,11 @@ class CreateCommentairesTable extends Migration
             $table->integer('articleId')->unsigned();
             $table->integer('idEglise')->unsigned();
             $table->integer('iduser')->unsigned();
+            $table->string('uuid');
             $table->text('contenu');
-            $table->string('nom');
-            $table->string('prenom')->nullable();
-            $table->string('email');
+            // $table->string('nom');
+            // $table->string('prenom')->nullable();
+            // $table->string('email');
             $table->string('statut')->nullable();
             $table->timestamps();
         });

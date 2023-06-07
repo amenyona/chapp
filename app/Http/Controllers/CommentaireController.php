@@ -18,15 +18,15 @@ class CommentaireController extends Controller
     public function index()
     {
         
-             $tab = [
-            'titre1' => 'Liste Des Commentaires',
-            'titre2' => 'Commentaires'
+             $tableau = [
+            'liste' => 'Liste Des Commentaires',
+            'table' => 'Commentaires'
             ];
             if(renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id)|| renvoiRoleUserS(Auth::user()->id) ){
                 $loggedUserInfo = User::where('id','=',Auth::user()->id)->first();
                 $commentaires = Commentaire::where('idEglise','=',renvoiEgliseId(Auth::user()->id))->latest()->simplePaginate(25);
                 //dd($commentaires);
-                return view('commentaire.index',compact('loggedUserInfo','commentaires','tab'));
+                return view('commentaire.index',compact('loggedUserInfo','commentaires','tableau'));
             }
             
         
@@ -62,19 +62,19 @@ class CommentaireController extends Controller
     public function show(Commentaire $commentaire)
     {
         
-              $tab = [
-            'titre1' => 'Voir Commentaires',
-            'titre2' => 'Commentaires'
+             $tableau = [
+            'liste' => 'Voir Commentaires',
+            'table' => 'Commentaires'
             ];
             if(renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id)|| renvoiRoleUserS(Auth::user()->id) || renvoiRoleUserSimple(Auth::user()->id)){
               $loggedUserInfo = User::where('id',Auth::user()->id)->first();
               $url = $_SERVER['REQUEST_URI'];
-              $id = substr($url,17 );
+              $id = substr($url,20 );
               //dd($id);
               $comment = Commentaire::where('uuid',$id)->first();
               $commentaire = Commentaire::find($comment['id']);
             // dd($commentaire);
-             return view('commentaire.show',compact('loggedUserInfo','commentaire','tab'));
+             return view('commentaire.show',compact('loggedUserInfo','commentaire','tableau'));
               
             }
         
@@ -83,15 +83,15 @@ class CommentaireController extends Controller
      public function mescommentaires()
     {
         
-             $tab = [
-            'titre1' => 'Liste Des Commentaires',
-            'titre2' => 'Commentaires'
+             $tableau = [
+            'liste' => 'Liste Des Commentaires',
+            'table' => 'Commentaires'
             ];
             if(renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id)|| renvoiRoleUserS(Auth::user()->id) || renvoiRoleUserSimple(Auth::user()->id)){
                 $loggedUserInfo = User::where('id','=',Auth::user()->id)->first();
                 $commentaires = Commentaire::where('iduser','=',Auth::user()->id)->latest()->simplePaginate(25);
                 //dd($commentaires);
-                return view('commentaire.commentaire',compact('loggedUserInfo','commentaires','tab'));
+                return view('commentaire.commentaire',compact('loggedUserInfo','commentaires','tableau'));
             }
             
         
