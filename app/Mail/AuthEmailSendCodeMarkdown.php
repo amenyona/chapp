@@ -28,6 +28,8 @@ class AuthEmailSendCodeMarkdown extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.authemailsendcode');
+        return $this->from('amenyona.late@edefence.tech')
+                ->subject('Answer/Reponse')
+               ->markdown('emails.authemailsendcode');
     }
 }

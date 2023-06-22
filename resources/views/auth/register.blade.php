@@ -107,7 +107,7 @@
                                 <select class="form-control select2" name="eglise">
                                     <option>Veuillez Selectionner</option>
                                     @foreach ($eglises as $item)
-                                    <option value="{{$item->id}}">{{$item->nom}}</option>    
+                                    <option value="{{$item->id}}">{{$item->nom}}-{{$item->quartier}}-{{renvoiPaysInfo($item->id)}}</option>    
                                     @endforeach
                                     
                                 </select>

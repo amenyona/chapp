@@ -12,6 +12,7 @@ use App\Http\Controllers\RepertoireController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StatistiqueController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\MesseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,7 +118,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('repertoiredeleteDoc/{id}', [RepertoireController::class, 'destroyDoc'])->name('repertoire.destroyDoc');
     Route::get('repertoireedit', [RepertoireController::class, 'edit'])->name('repertoire.edit');
     Route::put('repertoireupdate', [RepertoireController::class, 'update'])->name('repertoire.update');
+    Route::get('messe-liste', [MesseController::class, 'index'])->name('messe.index');
 });
 Route::get('inscription', [UserAuthController::class, 'inscrire'])->name('auth.inscrire');
+Route::get('mon-espace-de-travail', [UserAuthController::class, 'acceder'])->name('auth.acceder');
 Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('auth.back');
 require __DIR__ . '/auth.php';

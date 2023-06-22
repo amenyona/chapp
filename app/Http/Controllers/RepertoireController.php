@@ -30,14 +30,12 @@ class RepertoireController extends Controller
                 $repertoires = Eglise::find(renvoiEgliseId(Auth::user()->id))->repertoires()->simplePaginate(25);
                 return view('repertoire.index',compact('loggedUserInfo','tableau','repertoires'));
             }
-            
-        
-        
+                    
     }
 
     public function listeFiles(){
 
-                        
+            $tableau = [];
             $loggedUserInfo = User::where('id','=',Auth::user()->id)->first();
             $url = $_SERVER['REQUEST_URI'];
             $uuid = substr($url,17);
@@ -45,13 +43,21 @@ class RepertoireController extends Controller
             $repertoire = Repertoire::where('uuid',$uuid)->first();
 
             if($repertoire->type=="carnet_de_bapteme"){
+                $tableau = [
+                    'liste' => 'LES CARNETS DE BAPTÊME',
+                    'table' => 'CARNETS DE BAPTÊME'
+                ];  
                 $carnets = Repertoire::find($repertoire->id)->carnetDeBaptemes()->where('ideglise','=',$ideglise)->simplePaginate(25);
                 //dd($carnets);
-                return view('repertoire.listecarnetbapteme',compact('repertoire','loggedUserInfo','carnets'));
+                return view('repertoire.listecarnetbapteme',compact('repertoire','loggedUserInfo','carnets','tableau'));
             }else{
+                $tableau = [
+                    'liste' => 'Les Documents ',
+                    'table' => 'DOCUMENTS'
+                ];  
                 $documents = Repertoire::find($repertoire->id)->autreDocuments()->where('egliseId','=',$ideglise)->simplePaginate(25);
                 //AutreDocument
-                return view('repertoire.listeautredocument',compact('repertoire','loggedUserInfo','documents'));
+                return view('repertoire.listeautredocument',compact('repertoire','loggedUserInfo','documents','tableau'));
             }            
             
         

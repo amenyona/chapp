@@ -19,7 +19,7 @@
                 </a>
             </li>
             @endif
-            @if (renvoiRoleUser(Auth::user()->id) && renvoiAdminEglise())
+            @if (renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id))
             <li>
                 <a class='bx bx-home' href="{{route('eglise.index')}}" class="waves-effect"  style="font-size: 1.5em;">
                     <span key="t-dashboards">Eglises</span>
@@ -94,10 +94,17 @@
             </li>
             @endif
             
-              @if (renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id)|| renvoiRoleUserS(Auth::user()->id) || renvoiRoleUserSimple(Auth::user()->id))
+            @if (renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id)|| renvoiRoleUserS(Auth::user()->id) || renvoiRoleUserSimple(Auth::user()->id))
             <li>
                 <a class="bx bx-message-alt" href="{{route('commentaire.mescommentaires')}}" class="waves-effect" style="font-size: 1.5em;">
                     <span key="t-dashboards">Mes Commentaires</span>                  
+                </a>
+            </li>
+            @endif
+            @if (renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id)|| renvoiRoleUserS(Auth::user()->id) || renvoiRoleUserSimple(Auth::user()->id))
+            <li>
+                <a class="bx bx-home" href="{{route('messe.index')}}" class="waves-effect" style="font-size: 1.5em;">
+                    <span key="t-dashboards">Les Messes</span>                  
                 </a>
             </li>
             @endif

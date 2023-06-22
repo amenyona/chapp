@@ -42,7 +42,6 @@ class UserAuthController extends Controller
     }
 
 
-
     function login()
     {
         return view('auth.login');
@@ -101,7 +100,7 @@ class UserAuthController extends Controller
         }
     }
 
-    function create(Request $request)
+   public function create(Request $request)
     {
         //dd($request->input());
 
@@ -157,7 +156,7 @@ class UserAuthController extends Controller
         }
     }
 
-    function saveUser(Request $request)
+    public function saveUser(Request $request)
     {
         if ($request->eglise == "Veuillez Selectionner") {
             return back()->with('errorchamps', 'Echec!!!Veuillez selectionner le champ eglise');
@@ -200,11 +199,13 @@ class UserAuthController extends Controller
         }
     }
 
+    public function acceder(){
+        return view('auth.loginfinal');
+    }
 
 
-
-
-    function dashboard()
+   
+    public function dashboard()
     {
 
         $i = 0;
@@ -441,9 +442,7 @@ class UserAuthController extends Controller
         }
     }
 
-    function profile()
-    {
-
+    function profile(){
         $tableau = [
             'liste' => 'Profile Utilisateur',
             'table' => 'Utilisateurs'
@@ -456,6 +455,7 @@ class UserAuthController extends Controller
         $loggedUserInfo = $user;
         $url = $_SERVER['REQUEST_URI'];
         $id = substr($url, 9);
+        //dd($id);
         $dbid = User::where('uuid', $id)->first();
         $userInfo = DB::table('role_user')
             ->join('users', 'role_user.user_id', '=', 'users.id')
@@ -468,6 +468,7 @@ class UserAuthController extends Controller
         $roleid = $role[0]['id'];
         $eglise = User::find($dbid['id'])->eglise()->get();
         $egliseid = $eglise[0]['id'];
+        //dd($egliseid);
         $userInfor = DB::table('role_user')
             ->join('users', 'role_user.user_id', '=', 'users.id')
             ->join('roles', 'role_user.role_id', '=', 'roles.id')
@@ -505,7 +506,6 @@ class UserAuthController extends Controller
         $dependent = $request->get('dependent');
         $query = User::all();
         $output = "";
-
         foreach ($query as $row) {
             $output .= $row->name . '-' . $row->firstname;
         }
