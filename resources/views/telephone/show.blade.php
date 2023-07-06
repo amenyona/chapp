@@ -9,20 +9,14 @@
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesbrand" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" type="image/ico" href="{{asset('assets/images/logomissa.jpg')}}" />
-        <!-- DataTables -->
-        <link href="{{asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-        <!-- Responsive datatable examples -->
-        <link href="{{asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />     
+        <link rel="shortcut icon" href="{{asset('assets/images/logomissa.jpg')}}">
+
         <!-- Bootstrap Css -->
         <link href="{{asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
         <style>
             .textForm{
                 font-size: 1.8em;
@@ -37,45 +31,13 @@
                } 
                
                #wazimg{
-                   height: 10px;
-                   width: 10;
+                   height: 70px;
+                   width: 70;
                }        
                .idshowimg{
-                   height: 80px;
-                   width: 80px;
+                   height: 220px;
+                   width: 220px;
                }
-                /* for desktop */
-            .whatsapp_float {
-                position:fixed;
-                width:60px;
-                height:60px;
-                bottom:40px;
-                right:40px;
-                background-color:#25d366;
-                color:#FFF;
-                border-radius:50px;
-                text-align:center;
-                    font-size:30px;
-                box-shadow: 2px 2px 3px #999;
-                    z-index:100;
-            }
-
-            .whatsapp-icon {
-                margin-top:16px;
-            }
-            @media screen and (max-width: 767px){
-            .whatsapp-icon {
-            margin-top:10px;
-            }
-            .whatsapp_float {
-                width: 40px;
-                height: 40px;
-                bottom: 20px;
-                right: 10px;
-                font-size: 22px;
-            }
-            
-            }
         </style>
     </head>
 
@@ -89,19 +51,14 @@
             
             <header id="page-topbar" style="background: #FF0080;">
                 <div class="navbar-header">
-                    @include('header')
+                  @include('header')
                 </div>
             </header>
 
             <!-- ========== Left Sidebar Start ========== -->
             <div class="vertical-menu" style="background: #7928CA;">
 
-                <div data-simplebar class="h-100">
-
-                    <!--- Sidemenu -->
-                   @include('sidebar')
-                    <!-- Sidebar -->
-                </div>
+             @include('sidebar')
             </div>
             <!-- Left Sidebar End -->
 
@@ -119,12 +76,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">@if(isset($tableau['liste'])){{$tableau['liste']}}@endif</h4>
+                                    <h4 class="mb-sm-0 font-size-18">Téléphone les Detail</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">@if(isset($tableau['table'])){{$tableau['table']}}@endif</a></li>
-                                            <li class="breadcrumb-item active">@if(isset($tableau['liste'])){{$tableau['liste']}}@endif</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Téléphones</a></li>
+                                            <li class="breadcrumb-item active">Téléphone les Detail</li>
                                         </ol>
                                     </div>
 
@@ -132,18 +89,52 @@
                             </div>
                         </div>
                         <!-- end page title -->
-                  
-                       @yield('content')
-        
-                     
-                        
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="mt-4">
+                                                <a href="{{route('telephone.index')}}" class="btn btn-primary waves-effect waves-light btn-sm">Aller &agrave; la liste <i class="mdi mdi-arrow-left ms-1"></i></a>
+                                            </div>
+    
+                                            <div class="col-xl-8">
+                                                <div class="mt-4 mt-xl-3">
+                                                  
+
+                                                  
+                                                    <div class="row mb-3">
+                                                        <div class="col-md-12">
+                                                            <div>
+                                                                <p class="textForm"><i class="me-2 text-primary "></i>Numéro de téléphone: {{$telephone->numero}}</p>
+                                                                <p class="textForm"><i class="font-size-16 align-middle text-primary me-1"></i>Téléphonie: {{$telephone->libelle}}</p>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                       
+                                                    </div>
+    
+                                                </div>
+                                            </div>
+                                        </div>
+
+    
+                                      
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+
+
                     </div> <!-- container-fluid -->
                 </div>
                 <!-- End Page-content -->
 
                 
                 <footer class="footer">
-                 @include('footer')
+                   @include('footer')
                 </footer>
             </div>
             <!-- end main content-->
@@ -189,7 +180,7 @@
                         <img src="{{asset('assets/images/layouts/layout-3.jpg')}}" class="img-fluid img-thumbnail" alt="">
                     </div>
                     <div class="form-check form-switch mb-5">
-                        <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch" data-appStyle="{{asset('assets/css/app-rtl.min.css')}}">
+                        <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch" data-appStyle="assets/css/app-rtl.min.css">
                         <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
                     </div>
 
@@ -209,59 +200,9 @@
         <script src="{{asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
         <script src="{{asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
         <script src="{{asset('assets/libs/node-waves/waves.min.js')}}"></script>
-
-        <!-- Required datatable js -->
-        <script src="{{asset('assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-        <script src="{{asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-        <!-- Buttons examples -->
-        <script src="{{asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-        <script src="{{asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js')}}"></script>
-        <script src="{{asset('assets/libs/jszip/jszip.min.js')}}"></script>
-        <script src="{{asset('assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
-        <script src="{{asset('assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
-        <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-        <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-        <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
         
-        <!-- Responsive examples -->
-        <script src="{{asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-        <script src="{{asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
-
-        <!-- Datatable init js -->
-        <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>    
-
+        <!-- App js -->
         <script src="{{asset('assets/js/app.js')}}"></script>
 
     </body>
 </html>
-<script>
-var count = 0;
-    $(document).ready(function(){
-        
-        $('.add').click(function(){
-        $(".buttonSave").prop('disabled', false);     
-        count++;
-        //alert(count);
-        var html = '';
-        html += '<tr id="'+count+'">';
-        html +='<td><input type="text"  name="item_libelle[]" class="form-control item_libelle" required/></td>';
-        html +='<td><input type="text"  name="item_numero[]" class="form-control item_numero" required/></td>';    
-        html +='<td><button type="button" id="'+count+'" name="remove" class="btn btn-danger btn-xs remove"><i class="far fa-trash-alt"></i></button></td>';
-        
-        $('tbody').append(html); 
-       
-        })
-        
-    });
-
-    $(document).on('click', '.remove', function(){
-        var button_id = $(this).attr("id");
-        $("tr#"+button_id).remove();
-        count--
-        //alert(count)
-        if(count <= 0 ){
-            $(".buttonSave").prop('disabled', true); 
-        }
-    });
-    
-</script>

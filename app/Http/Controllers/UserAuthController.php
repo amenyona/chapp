@@ -86,7 +86,25 @@ class UserAuthController extends Controller
             $loggedUserInfo = $user;
             //dd($data);
             return view('auth.register', compact('roles', 'eglises', 'loggedUserInfo', 'tableau'));
-        } elseif (renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id) || renvoiRoleUserPretre(Auth::user()->id)) {
+        } elseif (renvoiRoleUser(Auth::user()->id)){
+            $user = User::where('id', '=', Auth::user()->id)->first();
+            $roleNom = ['admin'];
+            $roles = Role::whereNotIn('name', $roleNom)->get();
+            $eglises = [];
+            //dd($eglises);
+            $loggedUserInfo = $user;
+            return view('auth.register', compact('roles', 'eglises', 'loggedUserInfo', 'tableau'));
+
+        } elseif (renvoiRoleUserP(Auth::user()->id)){
+            $user = User::where('id', '=', Auth::user()->id)->first();
+            $roleNom = ['cure'];
+            $roles = Role::whereNotIn('name', $roleNom)->get();
+            $eglises = [];
+            //dd($eglises);
+            $loggedUserInfo = $user;
+            return view('auth.register', compact('roles', 'eglises', 'loggedUserInfo', 'tableau'));
+
+        }elseif (renvoiRoleUserPretre(Auth::user()->id)) {
             $user = User::where('id', '=', Auth::user()->id)->first();
             $roleNom = ['admin', 'cure'];
             $roles = Role::whereNotIn('name', $roleNom)->get();
@@ -333,9 +351,9 @@ class UserAuthController extends Controller
     public function edit()
     {
 
-        $tab = [
-            'titre1' => 'Modifier Utilisateurs',
-            'titre2' => 'Utilisateurs'
+        $tableau = [
+            'liste' => 'Modifier Utilisateurs',
+            'table' => 'Utilisateurs'
         ];
         //$user = User::where('id','=',session('LoggedUser'))->first();
         $user = DB::table('users')
@@ -360,7 +378,7 @@ class UserAuthController extends Controller
         $roles = Role::All();
         $eglises = Eglise::All();
         if (renvoiRoleUser(Auth::user()->id) || verifEgliseAppartenace($id, Auth::user()->id)) {
-            return view('auth.edit', compact('loggedUserInfo', 'user', 'roles', 'eglises', 'roleid', 'egliseid', 'tab'));
+            return view('auth.edit', compact('loggedUserInfo', 'user', 'roles', 'eglises', 'roleid', 'egliseid', 'tableau'));
         } else {
             return redirect()->route('auth.dashboard');
         }

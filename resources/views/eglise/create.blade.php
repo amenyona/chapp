@@ -65,7 +65,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="quartier">Quartier</label>
-                                <input type="quartier" class="form-control"  name="quartier" placeholder="Entrer le quartier" value="{{old('quartier')}}">
+                                <input type="text" class="form-control"  name="quartier" placeholder="Entrer le quartier" value="{{old('quartier')}}">
                                 <span class="text-danger">@error('quartier'){{ $message }}
                                    @enderror
                                 </span>
@@ -77,34 +77,62 @@
                                    @enderror
                                 </span>
                             </div>
+                            <div class="mb-3">
+                                <label for="lastname">Nom Utilisateur</label>
+                                <input type="text" class="form-control"  name="lastname" placeholder="Entrer le nom" value="{{old('lastname')}}">
+                                   <span class="text-danger">@error('lastname'){{ $message }}
+                                     @enderror
+                                  </span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="firstname">Prénom Utilisateur</label>
+                                <input type="text" class="form-control"  name="firstname" placeholder="Entrer le prénom" value="{{old('firstname')}}">
+                                   <span class="text-danger">@error('firstname'){{ $message }}
+                                     @enderror
+                                  </span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email">Email Utilisateur</label>
+                                <input type="email" class="form-control"  name="emailuser" placeholder="Entrer email" value="{{old('emailuser')}}">
+                                <span class="text-danger">@error('emailuser'){{ $message }}
+                                   @enderror
+                                </span>
+                            </div>
+                           
+                            <div class="mb-3">
+                                <label class="control-label">Sexe Utilisateur</label>
+                                <input id="adresse" name="sexe" type="text" class="form-control"  value="Masculin" readonly>
+                                
+                            </div>
                           
                             
                         </div>
 
                         <div class="col-sm-6">
                                <div class="mb-3">
-                                <label for="tel">Téléphone</label>
+                                <label for="tel">Téléphone Eglise</label>
                                 <input id="tel" name="tel" type="text" class="form-control" placeholder="Entrer le téléphone" value="{{old('tel')}}">
                                 <span class="text-danger">@error('tel'){{ $message }}
                                     @enderror
                                  </span>
                             </div>
                             <div class="mb-3">
-                                <label for="ville">Ville</label>
+                                <label for="ville">Ville Eglise</label>
                                 <input id="ville" name="ville" type="text" class="form-control" placeholder="Entrer la ville" value="{{old('ville')}}">
                                 <span class="text-danger">@error('ville'){{ $message }}
                                     @enderror
                                  </span>
                             </div>
                             <div class="mb-3">
-                                <label for="adresse">Adresse</label>
+                                <label for="adresse">Adresse Eglise</label>
                                 <input id="adresse" name="adresse" type="text" class="form-control" placeholder="Entrer l'adresse" value="{{old('adresse')}}">
                                 <span class="text-danger">@error('adresse'){{ $message }}
                                     @enderror
                                  </span>
                             </div>
                             <div class="mb-3">
-                                <label class="control-label">Pays</label>
+                                <label class="control-label">Pays Eglise</label>
                                 <select class="form-control select2" name="pays"> 
                                     <option>Veuillez Selectionner</option>
                                     @foreach ($pays as $item)
@@ -113,13 +141,46 @@
                                     
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="phone">Téléphone Utilisateur</label>
+                                <input id="phone" name="phone" type="text" class="form-control" placeholder="Entrer phone" value="{{old('phone')}}">
+                                <span class="text-danger">@error('phone'){{ $message }}
+                                    @enderror
+                                 </span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="control-label">Roles Utilisateur</label>
+                                <select class="form-control select2" name="role"> 
+                                    <option>Veuillez Selectionner</option>
+                                    @foreach ($roles as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                    
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="horizontal-password-input" name="password" placeholder="Entrer le mot de passe" value="{{old('password')}}">
+                                <span class="text-danger">@error('password'){{ $message }}
+                                    
+                                @enderror</span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password">Confirm Password</label>
+                                <input type="password" class="form-control"  name="new_confirm_password" placeholder="Confirmer le mot de passe">
+                                <span class="text-danger">@error('new_confirm_password'){{ $message }}
+                                    
+                                @enderror</span>
+                            </div>
+                            
                             
                         </div>
                     </div>
                     
                     
                     <div class="d-flex flex-wrap gap-2">
-                        <button type="submit" class="btn btn-primary waves-effect waves-light">Enreistrer</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Enregistrer</button>
                     </div>
                     
                 </form>

@@ -11,6 +11,7 @@ use App\Models\CarnetDeBapteme;
 use App\Models\Annonce;
 use App\Models\Contact;
 use App\Models\Pays;
+use App\Models\Telephone;
 use Carbon\Carbon;
 
 
@@ -78,6 +79,8 @@ function renvoiEgliseId($iduser)
     $egliseIdUser = User::where('id', '=', Auth::user()->id)->first();
     return $egliseIdUser['ideglise'];
 }
+
+
 
 function dateReturn($date)
 {
@@ -166,6 +169,26 @@ function renvoiUserEmail($id)
     $resu = User::where('id', $id)->first();
     return $resu['email'];
 }
+
+function verifUserEmail($email){
+    $resu = User::where('email', $email)->get()->count();
+    if ($resu > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+function verfifIfEgliseHasPhoneNumber(){
+    $egliseHasPhoneNumber = Telephone::where('ideglise', '=', renvoiEgliseId(Auth::user()->id))->get()->count();
+    if ($egliseHasPhoneNumber > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 function renvoiCommentUserId($id)
 {

@@ -28,6 +28,13 @@
             @endif
             @if (renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id))
             <li>
+                <a class='bx bx-phone-call' href="{{route('telephone.index')}}" class="waves-effect"  style="font-size: 1.5em;">
+                    <span key="t-dashboards">Téléphones</span>
+                </a>
+            </li>
+            @endif
+            @if (renvoiRoleUser(Auth::user()->id) || renvoiRoleUserP(Auth::user()->id))
+            <li>
                 <a class='bx bx-user' href="{{route('auth.listeusers')}}" class="waves-effect" style="font-size: 1.5em;">
                     <span key="t-dashboards">Utilisateurs</span>                  
                 </a>

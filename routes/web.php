@@ -13,6 +13,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StatistiqueController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\MesseController;
+use App\Http\Controllers\TelephoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,6 +120,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('repertoireedit', [RepertoireController::class, 'edit'])->name('repertoire.edit');
     Route::put('repertoireupdate', [RepertoireController::class, 'update'])->name('repertoire.update');
     Route::get('messe-liste', [MesseController::class, 'index'])->name('messe.index');
+    Route::get('telephones-liste', [TelephoneController::class, 'index'])->name('telephone.index');
+    Route::get('telephones-create', [TelephoneController::class, 'create'])->name('telephone.create');
+    Route::post('telephones-store', [TelephoneController::class, 'store'])->name('telephone.store');
+    Route::get('telephones-show', [TelephoneController::class, 'show'])->name('telephone.show');
+ 
 });
 Route::get('inscription', [UserAuthController::class, 'inscrire'])->name('auth.inscrire');
 Route::get('mon-espace-de-travail', [UserAuthController::class, 'acceder'])->name('auth.acceder');
